@@ -151,7 +151,7 @@ import toast from "react-hot-toast";
                     to="/login"
                     className="font-semibold text-red-600 hover:underline"
                 >
-                    Sign in
+                    Log in
                 </Link>
             </p>
             </form>
