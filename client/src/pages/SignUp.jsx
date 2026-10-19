@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import Logo from "../assets/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { authDataContext } from "../context/AuthContext";
 import axios from "axios";
@@ -11,6 +11,8 @@ import toast from "react-hot-toast";
     "w-full rounded-xl border border-gray-200 bg-gray-50/60 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 outline-none transition focus:border-red-500 focus:bg-white focus:ring-4 focus:ring-red-500/10";
 
     const SignUp = () => {
+
+        const navigate = useNavigate();
 
         const {serverUrl} = useContext(authDataContext)
 
@@ -44,11 +46,16 @@ import toast from "react-hot-toast";
                 setUserName("");
 
                 console.log(result)
+
+                navigate("/");
             } catch (error) {
                 const message = error.response?.data?.message || "Something went wrong";
                 setLoading(false);
                 toast.error(message);
             }
+            finally {
+                setLoading(false);
+                }
         }
 
     return (
