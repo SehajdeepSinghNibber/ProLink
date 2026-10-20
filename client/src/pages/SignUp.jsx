@@ -4,6 +4,7 @@ import Logo from "../assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { authDataContext } from "../context/AuthContext";
+import { userDataContext } from "../context/UserContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -15,6 +16,7 @@ import toast from "react-hot-toast";
         const navigate = useNavigate();
 
         const {serverUrl} = useContext(authDataContext)
+        const {setUserData} = useContext(userDataContext)
 
         const [userName, setUserName] = useState("");
         const [firstName, setFirstName] = useState("");
@@ -36,6 +38,7 @@ import toast from "react-hot-toast";
                     password
                 },{withCredentials:true})
 
+                setUserData(result.data.user);
                 toast.success(result.data.message || "Account created successfully!");
 
                 setLoading(false);

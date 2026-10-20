@@ -3,6 +3,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Logo from "../assets/Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { authDataContext } from "../context/AuthContext";
+import { userDataContext } from "../context/UserContext";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -11,6 +12,7 @@ const inputClass =
 
 const Login = () => {
   const { serverUrl } = useContext(authDataContext);
+  const { setUserData } = useContext(userDataContext);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -32,6 +34,7 @@ const Login = () => {
         { withCredentials: true }
       );
 
+      setUserData(result.data.user);
       toast.success(result.data.message || "Login successful!");
 
       setEmail("");
