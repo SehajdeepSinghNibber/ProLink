@@ -103,6 +103,7 @@
                 message: "User logged in Successfully",
                 user:{
                     _id: existUser._id,
+                    userName: existUser.userName,
                     email: existUser.email,
                     password: undefined
                 }
